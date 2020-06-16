@@ -4,11 +4,11 @@ class Spree::Slide < ActiveRecord::Base
                           class_name: 'Spree::SlideLocation',
                           join_table: 'spree_slide_slide_locations'
 
-  has_attached_file :image,
-                    url: '/spree/slides/:id/:style/:basename.:extension',
-                    path: ':rails_root/public/spree/slides/:id/:style/:basename.:extension',
-                    convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
-  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  has_one_attached  :image
+                    # url: '/spree/slides/:id/:style/:basename.:extension',
+                    # path: ':rails_root/public/spree/slides/:id/:style/:basename.:extension',
+                    # convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
+  # validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   scope :published, -> { where(published: true).order('position ASC') }
   scope :location, -> (location) { joins(:slide_locations).where('spree_slide_locations.name = ?', location) }

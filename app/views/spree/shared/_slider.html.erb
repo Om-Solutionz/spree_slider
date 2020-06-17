@@ -17,7 +17,6 @@
         <div class="item <%= index == 0 ? 'active' : '' %>">
           <%= link_to image_tag(main_app.url_for(slide.image), alt: slide.slide_name), url_for(slide.slide_link) %>
           <div class="carousel-caption">
-            <h3><%= slide.slide_name %></h3>
             <% unless slide.body.blank? %>
               <p><%= slide.body %><p>
             <% end %>
@@ -27,14 +26,16 @@
     </div>
 
     <%# Controls %>
-    <a class="left carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only"><%= t(:previous) %></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only"><%= t(:next) %></span>
-    </a>
+    <% if slider.size > 1 %>
+      <a class="left carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only"><%= t(:previous) %></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-slider-<%= cid %>" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only"><%= t(:next) %></span>
+      </a>
+     <% end %>
 
   </div>
 

@@ -53,16 +53,15 @@
       <%= f.file_field :image %>
     <% end %>
   </div>
-
   <div class="col-md-6">
     <%= f.field_container :image do %>
-      <% if f.object.image? %>
+      <% if f.object.image.attached?%>
         <p>
           <%= label_tag t(:preview) %>
           <br>
-          <%= image_tag f.object.image, class: 'img-responsive' %>
+          <%= image_tag main_app.url_for(f.object.image), class: 'img-responsive' %>
         </p>
-      <% end %>
+      <%end %>
     <% end %>
   </div>
 

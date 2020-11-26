@@ -1,12 +1,20 @@
 <div class="row">
-  <div class="col-md-2">
-    <%= f.field_container :position do %>
-      <%= f.label :position, t(:position) %>
-      <%= f.number_field :position, class: 'fullwidth form-control' %>
+<!--  <div class="col-md-2">-->
+    <%#= f.field_container :position do %>
+      <%#= f.label :position, t(:position) %>
+      <%#= f.number_field :position, class: 'fullwidth form-control' %>
+    <%#end %>
+<!--  </div>-->
+
+
+  <div class="col-md-6">
+    <%= f.field_container :store_id, class: ['form-group'] do %>
+      <%= f.label 'store' %>
+      <%= f.select :store_id, options_from_collection_for_select( Spree::Store.all, :id, :name,selected: f.object.persisted? ? f.object.store_id : ""), {:prompt => "Select Store"}, {class: 'select2' } %>
+
     <% end %>
   </div>
-
-  <div class="col-md-10">
+  <div class="col-md-6">
     <div class="field checkbox">
       <label>
         <%= f.check_box :published, class: "form-control" %>
@@ -15,12 +23,12 @@
     </div>
   </div>
 
-  <div class="col-md-12">
-    <%= f.field_container :product_id do %>
-      <%= label_tag :product_id, t(:product) %><br>
-      <%= hidden_field_tag 'slide[product_id]', f.object.product_id.to_s, class: "product_picker fullwidth" %>
-    <% end %>
-  </div>
+<!--  <div class="col-md-12">-->
+    <%#= f.field_container :product_id do %>
+<!--      <%#= label_tag :product_id, t(:product) %><br>-->
+      <%#= hidden_field_tag 'slide[product_id]', f.object.product_id.to_s, class: "product_picker fullwidth" %>
+    <%# end %>
+<!--  </div>-->
 
   <div class="col-md-6">
     <%= f.field_container :name do %>
@@ -36,9 +44,9 @@
     <% end %>
   </div>
 
-  <div class="col-md-6">
-    <%= render 'spree/admin/slides/edit_slider_locations', f: f %>
-  </div>
+<!--  <div class="col-md-6">-->
+    <%#= render 'spree/admin/slides/edit_slider_locations', f: f %>
+<!--  </div>-->
 
   <div class="col-md-12">
     <%= f.field_container :body do %>
@@ -49,7 +57,8 @@
 
   <div class="col-md-6">
     <%= f.field_container :image do %>
-      <%= f.label :image, t(:image) %> <i>(<%= t('spree_slider.image_tip') %>)</i><br>
+      <%#= f.label :image, t(:image) %> <i><%#= t('spree_slider.image_tip') %></i><br>
+      <%= f.label :image, t(:image) %><br>
       <%= f.file_field :image %>
     <% end %>
   </div>

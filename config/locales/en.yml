@@ -2,7 +2,7 @@ en:
   next: "Next"
   previous: "Previous"
   name: "Name"
-  body: "Body"
+  body: "Description"
   link_url: "Link URL"
   image: "Image"
   preview: "Preview"
@@ -23,8 +23,8 @@ en:
     new_slide: "New Slide"
     editing_slide: "Editing Slide"
     back_to_slides: "Back to Slides"
-    placeholder_name: "Leave blank to use product name"
-    placeholder_link_url: "Leave blank to use product url"
+    placeholder_name: "Main Heading"
+    placeholder_link_url: "Link url"
     image_tip: "Default first product image"
 
   spree_slider_locations:

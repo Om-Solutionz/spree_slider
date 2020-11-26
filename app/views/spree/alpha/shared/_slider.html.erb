@@ -1,0 +1,52 @@
+<% if slider.size > 0 %>
+
+  <%# generate a random number for the carousel id - in case you want multiple per page %>
+  <% cid ||= Random.rand(1000) %>
+
+  <div id="carousel-slider-<%= cid %>" class="carousel slide" data-ride="carousel" <%= (defined? interval) != nil ? "data-interval=#{interval.to_s}" : "" %>>
+    <%# Indicators %>
+<!--    <ol class="carousel-indicators">-->
+      <%# slider.each_with_index do |slide, index| %>
+<!--        <li data-target="#carousel-prod-<%##= cid %>" data-slide-to="<%##= index %>" class="<%##= index == 0 ? 'active' : '' %>"></li>-->
+      <%# end %>
+<!--    </ol>-->
+
+    <%# Wrapper for slider %>
+    <div class="carousel-inner">
+      <% slider.each_with_index do |slide, index| %>
+        <div class="homepage-hero-image position-relative item <%= index == 0 ? 'active' : '' %>">
+          <%= link_to image_tag(main_app.url_for(slide.image), alt: slide.slide_name, class: 'lazyload hero-image alpha-hero-image position-absolute'), url_for(slide.slide_link) %>
+          <div class="hero-content alpha-hero-content">
+            <div class="homepage-hero-image-text mb-2">
+              <%= slide.name %>
+            </div>
+            <div class="homepage-hero-image-text">
+              <%= slide.body %>
+            </div>
+            <% if index == 0  %>
+              <div class="text-left">
+                <%= link_to Spree.t('homepage.shop_now'), spree.products_path, class: 'btn btn-primary alpha-shop-btn px-4' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <%# Controls %>
+    <% if slider.size > 1 %>
+      <a class="left carousel-control slider_icon" href="#carousel-slider-<%= cid %>" role="button" data-slide="prev">
+        <span class="fa fa-angle-left" aria-hidden="true"></span>
+        <span class="sr-only"><%= t(:previous) %></span>
+      </a>
+      <a class="right carousel-control slider_icon" href="#carousel-slider-<%= cid %>" role="button" data-slide="next">
+        <span class="fa fa-angle-right" aria-hidden="true"></span>
+        <span class="sr-only"><%= t(:next) %></span>
+      </a>
+    <% end %>
+
+  </div>
+
+<% end %>
+
+

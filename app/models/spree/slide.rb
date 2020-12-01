@@ -20,11 +20,11 @@ class Spree::Slide < ActiveRecord::Base
   end
 
   def slide_name
-    name.blank? && product.present? ? product.name : name
+    name.present? ? name : ''
   end
 
   def slide_link
-    link_url.blank? && product.present? ? product : link_url
+    link_url.present? ? link_url : ''
   end
 
   def slide_image
